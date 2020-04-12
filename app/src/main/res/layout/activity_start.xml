@@ -7,6 +7,8 @@
     android:gravity="center"
     tools:context=".StartActivity">
 
+
+
     <Button
         android:id="@+id/create_Account_button_Id"
         style="@style/Widget.AppCompat.Button.Colored"
