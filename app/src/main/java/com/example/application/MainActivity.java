@@ -1,9 +1,12 @@
 package com.example.application;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.GridLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -13,6 +16,10 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+  private CardView profileCardview;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +27,23 @@ public class MainActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
+
+
+        profileCardview=findViewById(R.id.gridItem1Id);
+
+
+        profileCardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
+
+
+
 
     }
 
