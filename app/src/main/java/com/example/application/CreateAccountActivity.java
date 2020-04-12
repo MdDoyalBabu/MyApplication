@@ -3,6 +3,7 @@ package com.example.application;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,8 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
 
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,13 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference("Abidar+shorab");
+
+
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Please Wait");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setTitle("we are Creating Your Account");
+
 
 
         firstName=findViewById(R.id.firstName_Edittext_Id);
@@ -44,6 +54,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         createNowbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
 
                 final String cfirstName=firstName.getText().toString();
                 final String cLastName=lastName.getText().toString();
@@ -65,6 +76,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                                           if (task.isSuccessful()){
                                               Toast.makeText(CreateAccountActivity.this, "Successful", Toast.LENGTH_SHORT).show();
                                               Intent intent=new Intent(CreateAccountActivity.this,MainActivity.class);
+                                              progressDialog.dismiss();
                                               startActivity(intent);
                                           }
 
